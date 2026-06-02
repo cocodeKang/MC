@@ -3,32 +3,49 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>사회일치 기록장</title>
+  <title>사회일지</title>
   <style>
     :root{
       --bg:#f6f3ed;--card:#fffaf2;--white:#fff;--ink:#241f1a;--muted:#756d63;--line:#e4dccf;
-      --brand:#5d3fd3;--brand2:#7c5cff;--accent:#f2b84b;--good:#18865f;--danger:#c74343;
+      --brand:#5d3fd3;--brand2:#7c5cff;--accent:#f2b84b;--good:#18865f;--danger:#c74343;--blue:#1d63d8;
       --shadow:0 18px 45px rgba(42,32,21,.11);--r:22px
     }
-    *{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at 0 0,rgba(124,92,255,.12),transparent 34rem),radial-gradient(circle at 100% 0,rgba(242,184,75,.2),transparent 34rem),var(--bg);color:var(--ink)}
-    button,input,textarea,select{font:inherit} button{border:0;border-radius:14px;padding:10px 14px;background:var(--ink);color:#fff;font-weight:800;cursor:pointer}button:hover{transform:translateY(-1px)}button:active{opacity:.82;transform:none}.secondary{background:#ebe4da;color:var(--ink)}.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}.brand{background:var(--brand)}.good{background:var(--good)}.danger{background:var(--danger)}.small{padding:7px 10px;border-radius:10px;font-size:13px}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at 0 0,rgba(124,92,255,.12),transparent 34rem),radial-gradient(circle at 100% 0,rgba(242,184,75,.2),transparent 34rem),var(--bg);color:var(--ink)}
+    button,input,textarea,select{font:inherit}button{border:0;border-radius:14px;padding:10px 14px;background:var(--ink);color:#fff;font-weight:800;cursor:pointer;transition:.16s transform,.16s opacity,.16s background}button:hover{transform:translateY(-1px)}button:active{opacity:.82;transform:none}.secondary{background:#ebe4da;color:var(--ink)}.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}.brand{background:var(--brand)}.good{background:var(--good)}.danger{background:var(--danger)}.blue{background:var(--blue)}.small{padding:7px 10px;border-radius:10px;font-size:13px}
     input,textarea,select{width:100%;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:14px;padding:11px 12px;outline:none}textarea{min-height:110px;resize:vertical}input:focus,textarea:focus,select:focus{border-color:var(--brand2);box-shadow:0 0 0 3px rgba(124,92,255,.14)}
-    .app{min-height:100vh;display:grid;grid-template-columns:280px 1fr}aside{position:sticky;top:0;height:100vh;padding:22px 18px;border-right:1px solid var(--line);background:rgba(255,250,242,.88);backdrop-filter:blur(12px);overflow-y:auto}main{padding:28px;max-width:1320px;width:100%;margin:0 auto}.mobile-top{display:none;position:sticky;top:0;z-index:20;padding:12px;background:rgba(246,243,237,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-    .logo{display:flex;gap:12px;align-items:center;margin-bottom:16px}.logo-mark{width:44px;height:44px;display:grid;place-items:center;border-radius:15px;color:#fff;font-weight:900;background:linear-gradient(135deg,var(--brand),var(--accent));box-shadow:var(--shadow)}.logo h1{font-size:18px;margin:0;line-height:1.2}.logo p{margin:3px 0 0;color:var(--muted);font-size:13px}
-    .status{display:flex;gap:8px;padding:10px;border-radius:16px;background:#fff;border:1px solid var(--line);margin-bottom:14px;font-size:13px;color:var(--muted)}.dot{width:10px;height:10px;border-radius:50%;background:var(--danger);margin-top:4px;flex:0 0 auto}.dot.on{background:var(--good)}
+    .app{min-height:100vh;display:grid;grid-template-columns:280px 1fr}.mobile-top{display:none;position:sticky;top:0;z-index:20;padding:12px;background:rgba(246,243,237,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}aside{position:sticky;top:0;height:100vh;padding:22px 18px;border-right:1px solid var(--line);background:rgba(255,250,242,.88);backdrop-filter:blur(12px);overflow-y:auto}main{padding:28px;max-width:1320px;width:100%;margin:0 auto}
+    .logo{display:flex;gap:12px;align-items:center;margin-bottom:16px}.logo-mark{width:44px;height:44px;display:grid;place-items:center;border-radius:15px;color:#fff;font-weight:900;background:linear-gradient(135deg,var(--brand),var(--accent));box-shadow:var(--shadow)}.logo h1{font-size:18px;margin:0;line-height:1.2}.logo p{margin:3px 0 0;color:var(--muted);font-size:13px}.status{display:flex;gap:8px;padding:10px;border-radius:16px;background:#fff;border:1px solid var(--line);margin-bottom:14px;font-size:13px;color:var(--muted)}.dot{width:10px;height:10px;border-radius:50%;background:var(--danger);margin-top:4px;flex:0 0 auto}.dot.on{background:var(--good)}
     nav{display:grid;gap:8px;margin-top:12px}nav button{text-align:left;background:transparent;color:var(--ink);border:1px solid transparent;display:flex;justify-content:space-between;align-items:center;padding:12px 13px}nav button.active{background:var(--ink);color:#fff;box-shadow:var(--shadow)}nav button:not(.active):hover{background:#fff;border-color:var(--line)}.count{min-width:24px;height:24px;border-radius:99px;display:inline-grid;place-items:center;padding:0 7px;background:#ebe4da;color:var(--muted);font-size:12px}nav button.active .count{background:rgba(255,255,255,.2);color:#fff}
     .head{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:18px}.head h2{font-size:clamp(27px,3vw,42px);margin:0;letter-spacing:-.04em}.head p{margin:8px 0 0;color:var(--muted);line-height:1.55}.grid{display:grid;gap:16px}.two{grid-template-columns:repeat(2,minmax(0,1fr))}.three{grid-template-columns:repeat(3,minmax(0,1fr))}.four{grid-template-columns:repeat(4,minmax(0,1fr))}.card{border:1px solid var(--line);background:rgba(255,250,242,.94);border-radius:var(--r);padding:18px;box-shadow:var(--shadow)}.white{background:#fff}.card h3{margin:0 0 10px;font-size:18px}.card p,.item p{color:var(--muted);line-height:1.56}.stat{min-height:118px;display:flex;flex-direction:column;justify-content:space-between}.stat strong{font-size:34px;letter-spacing:-.04em}.stat span{color:var(--muted);font-weight:700}
-    .form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.full{grid-column:1/-1}label{display:grid;gap:6px;font-weight:800;color:#39322b;font-size:14px}.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:12px 0}.list{display:grid;gap:12px}.item{background:#fff;border:1px solid var(--line);border-radius:18px;padding:15px;display:grid;gap:10px}.item-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}.item h4{margin:0;font-size:17px}.item small{color:var(--muted)}.meta{display:flex;flex-wrap:wrap;gap:7px}.chip{display:inline-flex;align-items:center;border-radius:99px;padding:5px 9px;font-size:12px;background:#f1ece5;color:#574f46;font-weight:800}.chip.brand{background:rgba(93,63,211,.12);color:var(--brand)}.chip.good{background:rgba(24,134,95,.12);color:var(--good)}.chip.warn{background:rgba(242,184,75,.18);color:#8a5b00}.chip.danger{background:rgba(199,67,67,.12);color:var(--danger)}.quote{padding:14px;border-radius:16px;background:#f7f1e8;color:#4e453d;line-height:1.65;border-left:5px solid var(--accent)}.empty{padding:28px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:18px;background:rgba(255,255,255,.58)}.hide{display:none!important}.toast{position:fixed;right:20px;bottom:20px;z-index:50;display:grid;gap:8px}.toast div{padding:12px 14px;background:var(--ink);color:#fff;border-radius:14px;box-shadow:var(--shadow);max-width:360px}.kbd{font-family:ui-monospace,monospace;background:#eee7dd;border:1px solid var(--line);border-bottom-width:3px;padding:2px 6px;border-radius:7px;font-size:12px;color:#4a423a}
-    details{border:1px solid var(--line);border-radius:14px;padding:10px;background:#fffaf2}summary{cursor:pointer;font-weight:800}.training-step{display:grid;grid-template-columns:46px 1fr;gap:12px;align-items:start}.step-no{width:46px;height:46px;display:grid;place-items:center;border-radius:16px;background:var(--ink);color:#fff;font-weight:900}
-    @media print{aside,.mobile-top,.no-print,button,input,textarea,select{display:none!important}.app{display:block}main{padding:0;max-width:none}.card,.item{box-shadow:none;break-inside:avoid}}
-    @media(max-width:960px){.app{grid-template-columns:1fr}aside{display:none}.mobile-top{display:block}main{padding:18px}.two,.three,.four,.form-grid{grid-template-columns:1fr}.head{align-items:stretch;flex-direction:column}.item-head{flex-direction:column}}
+    .form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.full{grid-column:1/-1}label{display:grid;gap:6px;font-weight:800;color:#39322b;font-size:14px}label small{color:var(--muted);font-weight:600}.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:12px 0}.list{display:grid;gap:12px}.item{background:#fff;border:1px solid var(--line);border-radius:18px;padding:15px;display:grid;gap:10px}.item.clickable{cursor:pointer}.item.clickable:hover{border-color:var(--brand2);box-shadow:0 0 0 3px rgba(124,92,255,.08)}.item-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}.item h4{margin:0;font-size:17px}.item small{color:var(--muted)}.meta{display:flex;flex-wrap:wrap;gap:7px}.chip{display:inline-flex;align-items:center;border-radius:99px;padding:5px 9px;font-size:12px;background:#f1ece5;color:#574f46;font-weight:800}.chip.brand{background:rgba(93,63,211,.12);color:var(--brand)}.chip.good{background:rgba(24,134,95,.12);color:var(--good)}.chip.warn{background:rgba(242,184,75,.18);color:#8a5b00}.chip.danger{background:rgba(199,67,67,.12);color:var(--danger)}.quote{padding:14px;border-radius:16px;background:#f7f1e8;color:#4e453d;line-height:1.65;border-left:5px solid var(--accent)}.empty{padding:28px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:18px;background:rgba(255,255,255,.58)}.hide{display:none!important}.kbd{font-family:ui-monospace,monospace;background:#eee7dd;border:1px solid var(--line);border-bottom-width:3px;padding:2px 6px;border-radius:7px;font-size:12px;color:#4a423a}
+    details{border:1px solid var(--line);border-radius:14px;padding:10px;background:#fffaf2}summary{cursor:pointer;font-weight:800}.training-step{display:grid;grid-template-columns:46px 1fr;gap:12px;align-items:start}.step-no{width:46px;height:46px;display:grid;place-items:center;border-radius:16px;background:var(--ink);color:#fff;font-weight:900}.progress{width:100%;height:10px;background:#eee7dd;border-radius:99px;overflow:hidden}.progress span{display:block;height:100%;background:linear-gradient(90deg,var(--brand),var(--accent));border-radius:99px}
+    .toast{position:fixed;right:20px;bottom:20px;z-index:80;display:grid;gap:8px}.toast div{padding:12px 14px;background:var(--ink);color:#fff;border-radius:14px;box-shadow:var(--shadow);max-width:360px}.fixed-actions{position:fixed;right:18px;top:18px;z-index:60;display:flex;gap:8px}.fixed-actions button{width:48px;height:48px;border-radius:16px;padding:0;display:grid;place-items:center;font-size:21px;box-shadow:var(--shadow)}.fixed-actions button span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}.quick-panel{position:fixed;right:18px;top:76px;width:min(430px,calc(100vw - 36px));max-height:calc(100vh - 96px);overflow:auto;z-index:59;background:#fffaf2;border:1px solid var(--line);box-shadow:0 24px 70px rgba(0,0,0,.2);border-radius:24px;padding:16px;display:none}.quick-panel.show{display:block}.quick-panel h3{margin:0 0 4px}.quick-panel p{color:var(--muted);line-height:1.5}.quick-panel .save-state{font-size:12px;color:var(--muted);font-weight:800}.edit-banner{padding:12px 14px;border-radius:16px;background:rgba(93,63,211,.1);border:1px solid rgba(93,63,211,.22);color:var(--brand);font-weight:800;margin-bottom:12px}.row-actions{display:flex;gap:7px;flex-wrap:wrap}.record-form-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}.record-form-title h3{margin:0}.pre-questions li{margin-bottom:8px;line-height:1.45}.screen-chip{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;z-index:58;background:rgba(36,31,26,.92);color:#fff;padding:9px 12px;border-radius:99px;font-size:12px;box-shadow:var(--shadow);display:none}.screen-chip.show{display:block}
+    @media print{aside,.mobile-top,.no-print,.fixed-actions,.quick-panel,.screen-chip,button,input,textarea,select{display:none!important}.app{display:block}main{padding:0;max-width:none}.card,.item{box-shadow:none;break-inside:avoid}}
+    @media(max-width:960px){.app{grid-template-columns:1fr}aside{display:none}.mobile-top{display:block}main{padding:18px}.two,.three,.four,.form-grid{grid-template-columns:1fr}.head{align-items:stretch;flex-direction:column}.item-head{flex-direction:column}.fixed-actions{top:auto;right:14px;bottom:14px}.quick-panel{right:12px;top:12px;width:calc(100vw - 24px);max-height:calc(100vh - 24px)}}
   </style>
 </head>
 <body>
-  <div class="mobile-top"><select id="mobileNav"></select></div>
+  <div class="mobile-top"><select id="mobileNav" aria-label="화면 이동"></select></div>
+  <div class="fixed-actions no-print">
+    <button id="quickUpdateBtn" class="brand" title="업데이트 메모 Ctrl+U">📝<span>업데이트 메모</span></button>
+    <button id="chatgptLinkBtn" class="blue" title="ChatGPT 연결 Ctrl+G">💬<span>ChatGPT 연결</span></button>
+  </div>
+  <section id="quickPanel" class="quick-panel no-print" aria-label="빠른 업데이트 메모">
+    <div class="record-form-title"><div><h3>업데이트 메모</h3><p style="margin:4px 0 0">현재 화면에서 바로 적으면 자동 저장됩니다.</p></div><button id="quickCloseBtn" class="small ghost" type="button">닫기</button></div>
+    <div class="meta" style="margin-bottom:10px"><span class="chip brand">Ctrl+U 열기/닫기</span><span class="chip" id="quickScreenChip">현재 화면</span><span class="chip good" id="quickSaveState">대기 중</span></div>
+    <div class="form-grid">
+      <label class="full">제목<input id="quickTitle" placeholder="예: 소개자료에 질문 불러오기 추가"></label>
+      <label>우선순위<select id="quickPriority"><option>보통</option><option>높음</option><option>낮음</option></select></label>
+      <label>현재 화면<input id="quickScreen" readonly></label>
+      <label class="full">반영할 내용<textarea id="quickDetail" placeholder="지금 보고 있는 화면에서 바꾸고 싶은 내용을 적어주세요. 입력 후 잠시 지나면 자동 저장됩니다."></textarea></label>
+    </div>
+    <div class="toolbar"><button id="quickNewBtn" class="secondary" type="button">새 메모 시작</button><button id="quickGoUpdatesBtn" class="ghost" type="button">업데이트 목록 보기</button></div>
+  </section>
+  <div id="screenChip" class="screen-chip">기록을 불러왔습니다.</div>
   <div class="app">
     <aside>
-      <div class="logo"><div class="logo-mark">司</div><div><h1>사회일치 기록장</h1><p>사회 · 통역 · 소개 · 성찰</p></div></div>
+      <div class="logo"><div class="logo-mark">社</div><div><h1>사회일지</h1><p>사회 · 통역 · 소개 · 성찰 · 추적</p></div></div>
       <div class="status"><span id="syncDot" class="dot"></span><span id="syncText">저장 방식 확인 중</span></div>
       <nav id="sideNav"></nav>
       <div class="card white" style="margin-top:16px;box-shadow:none"><h3>오늘의 관점</h3><p id="todayInsight">사회자는 순서를 넘기는 사람이 아니라, 사람과 의미를 연결하는 통역자다.</p><button class="small ghost" id="randomInsightBtn">다른 질문 보기</button></div>
@@ -39,81 +56,422 @@
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-import { getFirestore, collection, addDoc, deleteDoc, doc, onSnapshot, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+import { getFirestore, collection, addDoc, updateDoc, deleteDoc, doc, onSnapshot, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
-const APP_VERSION="2026-05-30 사회일치 v1";
-const STORAGE_KEY="mc-host-training-program-v1";
-const DEFAULT_SETTINGS={workspaceId:"tongyeong-host-training",firebaseConfigText:"",ownerName:"강대희",programTitle:"사회일치 기록장",motto:"사회는 순서 진행이 아니라, 사람과 의미를 연결하는 통역이다."};
-const COLLECTIONS={events:"events",reflections:"reflections",trainings:"trainings",people:"people",updates:"updates",updateHistory:"updateHistory"};
-const NAV=[{id:"dashboard",label:"전체현황",icon:"🏠"},{id:"events",label:"행사기록",icon:"📅"},{id:"reflection",label:"성찰질문",icon:"🪞"},{id:"training",label:"사회훈련",icon:"🎤"},{id:"people",label:"소개자료",icon:"🤝"},{id:"updates",label:"업데이트",icon:"🧩"},{id:"settings",label:"설정",icon:"⚙️"}];
-const CORE_QUESTIONS=[
- {tag:"사회자 정체성",title:"사회를 잘 본다는 것은 무엇인가?",guide:"행사의 목적, 사람의 마음, 순서의 흐름을 동시에 살피며 관객이 자연스럽게 따라오게 돕는 것이다."},
- {tag:"소개",title:"시의원님들을 소개할 때 무엇을 봐야 하는가?",guide:"직함만 읽지 말고, 오늘 행사와 연결되는 관심사·참석 의미·지역과의 관계를 짧게 붙인다."},
- {tag:"유머",title:"유머란 무엇인가?",guide:"사람을 깎아내리는 말이 아니라 긴장을 낮추고 마음의 거리를 좁히는 부드러운 연결 장치다."},
- {tag:"통역",title:"사회도 통역이라고 볼 수 있는가?",guide:"가능하다. 사회자는 순서, 분위기, 사람, 의미를 관객이 이해할 수 있는 언어로 바꾸는 사람이다."},
- {tag:"신앙",title:"주님을 소개한다면 어떻게 말할 것인가?",guide:"설명보다 초대에 가깝게. 내가 아는 주님, 공동체가 경험한 은혜, 오늘 이 자리의 의미를 연결한다."},
- {tag:"관찰",title:"친근함은 어디에서 나오는가?",guide:"상대의 이름, 표정, 자리, 긴장, 기대를 관찰하고 한 문장으로 존중해 줄 때 생긴다."},
- {tag:"준비",title:"좋은 사회를 위한 준비는 무엇을 남겨야 하는가?",guide:"행사 내역, 인물 이력, 질문, 피드백, 다음 훈련을 기록으로 남겨 다음 무대의 감각으로 바꾼다."}
+const APP_VERSION = "2026-06-02 사회일지 v3";
+const STORAGE_KEY = "mc-social-log-program-v3";
+const QUICK_DRAFT_KEY = "mc-social-log-quick-update-draft-v3";
+const QUICK_ID_KEY = "mc-social-log-quick-update-id-v3";
+const CHATGPT_LINK = "https://chatgpt.com/c/6a1a8238-8720-83a7-a933-dccbb8ec51a4";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDemt6XShN0R133ftb9f2sDsqT1vJTokWs",
+  authDomain: "mc-log-415d2.firebaseapp.com",
+  projectId: "mc-log-415d2",
+  storageBucket: "mc-log-415d2.firebasestorage.app",
+  messagingSenderId: "765475888237",
+  appId: "1:765475888237:web:e8f391a24209e9f2a67364",
+  measurementId: "G-HT9E40HQC1"
+};
+
+const DEFAULT_SETTINGS = {
+  workspaceId: "mc-log-415d2",
+  firebaseConfigText: JSON.stringify(firebaseConfig, null, 2),
+  ownerName: "강대희",
+  programTitle: "사회일지",
+  motto: "사회는 순서 진행이 아니라, 사람과 의미를 연결하는 통역이다."
+};
+
+const COLLECTIONS = {
+  tasks: "tasks",
+  events: "events",
+  reflections: "reflections",
+  trainings: "trainings",
+  people: "people",
+  updates: "updates",
+  updateHistory: "updateHistory"
+};
+
+const NAV = [
+  { id: "dashboard", label: "전체현황", icon: "🏠" },
+  { id: "tasks", label: "목표·할일", icon: "✅" },
+  { id: "events", label: "행사기록", icon: "📅" },
+  { id: "reflection", label: "성찰질문", icon: "🪞" },
+  { id: "training", label: "사회훈련", icon: "🎤" },
+  { id: "people", label: "소개자료", icon: "🤝" },
+  { id: "updates", label: "업데이트", icon: "🧩" },
+  { id: "settings", label: "설정", icon: "⚙️" }
 ];
-const TRAINING_STEPS=[
- {title:"1분 소개 훈련",goal:"사람·행사·의미를 1분 안에 연결하기",method:"인물 1명 또는 순서 1개를 골라 ‘누구인가 → 왜 오늘 중요한가 → 관객이 어떻게 들으면 좋은가’로 말한다.",check:"직함만 읽지 않았는가? 행사의 목적과 연결했는가?"},
- {title:"3문장 전환 멘트 훈련",goal:"앞 순서와 다음 순서를 자연스럽게 잇기",method:"앞 순서의 느낌 1문장, 관객 반응 1문장, 다음 순서 기대 1문장으로 구성한다.",check:"갑자기 끊기지 않았는가? 박수와 호응을 자연스럽게 만들었는가?"},
- {title:"관찰 메모 훈련",goal:"무대 위 사람과 관객의 상태를 읽기",method:"행사 전 10분 동안 표정, 자리 배치, 긴장한 사람, 도와야 할 사람을 5개 적는다.",check:"내 멘트가 실제 사람을 보고 나온 말인가?"},
- {title:"유머 안전선 훈련",goal:"분위기를 살리되 누군가를 불편하게 하지 않기",method:"나 자신, 상황, 공통 경험을 소재로 짧게 말한다. 특정 개인·약점·장애·외모는 피한다.",check:"웃음 뒤에 누군가 작아지지 않았는가?"},
- {title:"통역자 관점 훈련",goal:"사회 멘트를 ‘의미 전달’로 설계하기",method:"내가 하고 싶은 말이 아니라 관객이 알아야 할 의미를 먼저 쓰고, 그다음 말투를 다듬는다.",check:"정보, 감정, 다음 행동이 분명한가?"},
- {title:"피드백 압축 훈련",goal:"행사 후 배운 점을 다음 행동으로 바꾸기",method:"좋았던 점 1개, 아쉬운 점 1개, 다음 행사에서 바로 실험할 것 1개만 남긴다.",check:"반성으로 끝나지 않고 훈련 과제가 생겼는가?"}
+
+const TAB_BY_TYPE = { tasks:"tasks", events:"events", reflections:"reflection", trainings:"training", people:"people", updates:"updates", updateHistory:"updates" };
+const FORM_BY_TYPE = { tasks:"taskForm", events:"eventForm", reflections:"reflectionForm", trainings:"trainingForm", people:"peopleForm", updates:"updateForm" };
+
+const CORE_QUESTIONS = [
+ { tag:"사회자 정체성", title:"사회를 잘 본다는 것은 무엇인가?", guide:"행사의 목적, 사람의 마음, 순서의 흐름을 동시에 살피며 관객이 자연스럽게 따라오게 돕는 것이다." },
+ { tag:"소개", title:"시의원님들을 소개할 때 무엇을 봐야 하는가?", guide:"직함만 읽지 말고, 오늘 행사와 연결되는 관심사·참석 의미·지역과의 관계를 짧게 붙인다." },
+ { tag:"유머", title:"유머란 무엇인가?", guide:"사람을 깎아내리는 말이 아니라 긴장을 낮추고 마음의 거리를 좁히는 부드러운 연결 장치다." },
+ { tag:"통역", title:"사회도 통역이라고 볼 수 있는가?", guide:"가능하다. 사회자는 순서, 분위기, 사람, 의미를 관객이 이해할 수 있는 언어로 바꾸는 사람이다." },
+ { tag:"신앙", title:"주님을 소개한다면 어떻게 말할 것인가?", guide:"설명보다 초대에 가깝게. 내가 아는 주님, 공동체가 경험한 은혜, 오늘 이 자리의 의미를 연결한다." },
+ { tag:"관찰", title:"친근함은 어디에서 나오는가?", guide:"상대의 이름, 표정, 자리, 긴장, 기대를 관찰하고 한 문장으로 존중해 줄 때 생긴다." },
+ { tag:"준비", title:"좋은 사회를 위한 준비는 무엇을 남겨야 하는가?", guide:"행사 내역, 인물 이력, 질문, 피드백, 다음 훈련을 기록으로 남겨 다음 무대의 감각으로 바꾼다." }
 ];
-const INTRO_TEMPLATES=[
- {title:"시의원님 소개 기본형",body:"오늘 이 자리를 함께 축하해 주시기 위해 지역 의정활동으로 늘 현장의 목소리를 듣고 계신 ○○○ 시의원님께서 참석해 주셨습니다. 큰 박수로 환영해 주시기 바랍니다."},
- {title:"내빈 소개 의미 연결형",body:"단순히 자리를 빛내기 위해 오신 것이 아니라, 오늘 행사의 의미와 지역의 과제를 함께 기억하기 위해 함께해 주셨습니다. ○○○님을 소개합니다."},
- {title:"주님 소개 신앙 고백형",body:"오늘 우리가 소개하고 싶은 분은 무대 위의 사람보다 먼저, 우리를 이 자리까지 인도하신 주님입니다. 우리의 부족함을 은혜로 덮으시고, 서로를 통해 사랑을 보게 하시는 주님께 감사드립니다."},
- {title:"긴장 완화 유머형",body:"오늘 사회자는 대본을 보고 있지만, 마음은 여러분 얼굴을 보고 있습니다. 혹시 제가 순서를 놓치면 따뜻한 박수로 길을 알려 주시면 감사하겠습니다."}
+
+const TRAINING_STEPS = [
+ { title:"1분 소개 훈련", goal:"사람·행사·의미를 1분 안에 연결하기", method:"인물 1명 또는 순서 1개를 골라 ‘누구인가 → 왜 오늘 중요한가 → 관객이 어떻게 들으면 좋은가’로 말한다.", check:"직함만 읽지 않았는가? 행사의 목적과 연결했는가?" },
+ { title:"3문장 전환 멘트 훈련", goal:"앞 순서와 다음 순서를 자연스럽게 잇기", method:"앞 순서의 느낌 1문장, 관객 반응 1문장, 다음 순서 기대 1문장으로 구성한다.", check:"갑자기 끊기지 않았는가? 박수와 호응을 자연스럽게 만들었는가?" },
+ { title:"관찰 메모 훈련", goal:"무대 위 사람과 관객의 상태를 읽기", method:"행사 전 10분 동안 표정, 자리 배치, 긴장한 사람, 도와야 할 사람을 5개 적는다.", check:"내 멘트가 실제 사람을 보고 나온 말인가?" },
+ { title:"유머 안전선 훈련", goal:"분위기를 살리되 누군가를 불편하게 하지 않기", method:"나 자신, 상황, 공통 경험을 소재로 짧게 말한다. 특정 개인·약점·장애·외모는 피한다.", check:"웃음 뒤에 누군가 작아지지 않았는가?" },
+ { title:"통역자 관점 훈련", goal:"사회 멘트를 ‘의미 전달’로 설계하기", method:"내가 하고 싶은 말이 아니라 관객이 알아야 할 의미를 먼저 쓰고, 그다음 말투를 다듬는다.", check:"정보, 감정, 다음 행동이 분명한가?" },
+ { title:"피드백 압축 훈련", goal:"행사 후 배운 점을 다음 행동으로 바꾸기", method:"좋았던 점 1개, 아쉬운 점 1개, 다음 행사에서 바로 실험할 것 1개만 남긴다.", check:"반성으로 끝나지 않고 훈련 과제가 생겼는가?" }
 ];
-const state={activeTab:"dashboard",settings:{...DEFAULT_SETTINGS},backend:"local",firebaseReady:false,app:null,db:null,unsubs:[],data:{events:[],reflections:[],trainings:[],people:[],updates:[],updateHistory:[]},filters:{eventSearch:"",eventType:"전체"}};
-const $=s=>document.querySelector(s); const $$=s=>Array.from(document.querySelectorAll(s));
-const today=()=>new Date().toISOString().slice(0,10); const id=()=>crypto?.randomUUID?crypto.randomUUID():String(Date.now())+Math.random().toString(16).slice(2);
+
+const INTRO_TEMPLATES = [
+ { title:"시의원님 소개 기본형", body:"오늘 이 자리를 함께 축하해 주시기 위해 지역 의정활동으로 늘 현장의 목소리를 듣고 계신 ○○○ 시의원님께서 참석해 주셨습니다. 큰 박수로 환영해 주시기 바랍니다." },
+ { title:"내빈 소개 의미 연결형", body:"단순히 자리를 빛내기 위해 오신 것이 아니라, 오늘 행사의 의미와 지역의 과제를 함께 기억하기 위해 함께해 주셨습니다. ○○○님을 소개합니다." },
+ { title:"주님 소개 신앙 고백형", body:"오늘 우리가 소개하고 싶은 분은 무대 위의 사람보다 먼저, 우리를 이 자리까지 인도하신 주님입니다. 우리의 부족함을 은혜로 덮으시고, 서로를 통해 사랑을 보게 하시는 주님께 감사드립니다." },
+ { title:"긴장 완화 유머형", body:"오늘 사회자는 대본을 보고 있지만, 마음은 여러분 얼굴을 보고 있습니다. 혹시 제가 순서를 놓치면 따뜻한 박수로 길을 알려 주시면 감사하겠습니다." }
+];
+
+const PREP_QUESTIONS = [
+ "오늘 행사에서 어떤 점이 가장 중요하게 전달되면 좋을까요?",
+ "소개할 때 꼭 넣었으면 하는 직함, 이력, 활동이 있을까요?",
+ "너무 딱딱한 소개와 친근한 소개 중 어느 쪽이 편하신가요?",
+ "오늘 참석하신 이유나 이 행사와의 인연을 한 문장으로 말한다면 무엇일까요?",
+ "관객들이 의원님/내빈을 어떤 사람으로 기억하면 좋을까요?",
+ "제가 소개할 때 피했으면 하는 표현이나 조심할 내용이 있을까요?"
+];
+
+const state = {
+  activeTab:"dashboard",
+  settings:{...DEFAULT_SETTINGS},
+  backend:"local",
+  firebaseReady:false,
+  app:null,
+  db:null,
+  unsubs:[],
+  data:{tasks:[],events:[],reflections:[],trainings:[],people:[],updates:[],updateHistory:[]},
+  filters:{eventSearch:"",eventType:"전체",taskStatus:"전체"},
+  editing:{tasks:null,events:null,reflections:null,trainings:null,people:null,updates:null},
+  quickOpen:false,
+  quickUpdateId:localStorage.getItem(QUICK_ID_KEY) || "",
+  quickTimer:null
+};
+
+const $ = (s) => document.querySelector(s);
+const $$ = (s) => Array.from(document.querySelectorAll(s));
+const today = () => new Date().toISOString().slice(0,10);
+const makeId = () => crypto?.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(16).slice(2);
+
 function esc(v=""){return String(v).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
-function br(v=""){return esc(v).replaceAll("\n","<br>")} function dateVal(v){if(!v)return"";if(typeof v==="string")return v.slice(0,10);if(v.toDate)return v.toDate().toISOString().slice(0,10);if(v.seconds)return new Date(v.seconds*1000).toISOString().slice(0,10);return""}
-function loadLocal(){try{const raw=localStorage.getItem(STORAGE_KEY);if(!raw)return;const p=JSON.parse(raw);state.settings={...DEFAULT_SETTINGS,...(p.settings||{})};state.data={...state.data,...(p.data||{})}}catch(e){console.error(e);toast("로컬 데이터를 읽지 못했습니다.")}}
-function saveLocal(){localStorage.setItem(STORAGE_KEY,JSON.stringify({version:APP_VERSION,settings:state.settings,data:state.data}))}
+function br(v=""){return esc(v).replaceAll("\n","<br>")}
+function dateVal(v){if(!v)return"";if(typeof v==="string")return v.slice(0,10);if(v.toDate)return v.toDate().toISOString().slice(0,10);if(v.seconds)return new Date(v.seconds*1000).toISOString().slice(0,10);return""}
+function nowText(){return new Date().toLocaleString("ko-KR")}
+function currentTabLabel(){return NAV.find(n=>n.id===state.activeTab)?.label || state.activeTab}
+function getRecord(type, rid){return state.data[type]?.find(x=>x.id===rid)}
+
+function loadLocal(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(!raw)return;
+    const p = JSON.parse(raw);
+    state.settings = {...DEFAULT_SETTINGS, ...(p.settings||{})};
+    state.data = {...state.data, ...(p.data||{})};
+  }catch(e){console.error(e);toast("로컬 데이터를 읽지 못했습니다.")}
+}
+function saveLocal(){localStorage.setItem(STORAGE_KEY, JSON.stringify({version:APP_VERSION,settings:state.settings,data:state.data}))}
 function parseFirebase(text){if(!text||!text.trim())return null;try{const c=JSON.parse(text.trim());if(!c.apiKey||!c.projectId||!c.appId||String(c.apiKey).includes("YOUR_"))return null;return c}catch{return null}}
 function colRef(type){return collection(state.db,"mcWorkspaces",state.settings.workspaceId||DEFAULT_SETTINGS.workspaceId,COLLECTIONS[type])}
-async function initFirebase(){const config=parseFirebase(state.settings.firebaseConfigText);if(!config){state.backend="local";state.firebaseReady=false;syncStatus();return}try{state.app=initializeApp(config);state.db=getFirestore(state.app);state.backend="firebase";state.firebaseReady=true;Object.keys(COLLECTIONS).forEach(type=>{const q=query(colRef(type),orderBy("createdAt","desc"));const unsub=onSnapshot(q,snap=>{state.data[type]=snap.docs.map(d=>({id:d.id,...d.data()}));render()},err=>toast("Firestore 오류: "+err.message));state.unsubs.push(unsub)});syncStatus()}catch(e){console.error(e);state.backend="local";state.firebaseReady=false;syncStatus();toast("Firebase 연결 실패. 설정값을 확인하세요.")}}
+function docRef(type,rid){return doc(state.db,"mcWorkspaces",state.settings.workspaceId||DEFAULT_SETTINGS.workspaceId,COLLECTIONS[type],rid)}
+
+async function initFirebase(){
+  const config = parseFirebase(state.settings.firebaseConfigText) || firebaseConfig;
+  if(!config){state.backend="local";state.firebaseReady=false;syncStatus();return}
+  try{
+    state.app = initializeApp(config);
+    state.db = getFirestore(state.app);
+    state.backend = "firebase";
+    state.firebaseReady = true;
+    Object.keys(COLLECTIONS).forEach(type=>{
+      const q = query(colRef(type), orderBy("createdAt","desc"));
+      const unsub = onSnapshot(q, snap=>{
+        state.data[type] = snap.docs.map(d=>({id:d.id,...d.data()}));
+        render();
+      }, err=>toast("Firestore 오류: "+err.message));
+      state.unsubs.push(unsub);
+    });
+    syncStatus();
+  }catch(e){console.error(e);state.backend="local";state.firebaseReady=false;syncStatus();toast("Firebase 연결 실패. 설정값을 확인하세요.")}
+}
 function syncStatus(){const dot=$("#syncDot"),txt=$("#syncText");if(!dot||!txt)return;dot.classList.toggle("on",state.firebaseReady);txt.textContent=state.firebaseReady?`Firestore 실시간 동기화 · ${state.settings.workspaceId}`:"브라우저 저장소 모드 · Firebase 설정 전"}
-async function addRecord(type,payload){if(state.backend==="firebase"&&state.firebaseReady){await addDoc(colRef(type),{...payload,createdAt:serverTimestamp(),updatedAt:serverTimestamp()})}else{state.data[type].unshift({id:id(),...payload,createdAt:new Date().toISOString(),updatedAt:new Date().toISOString()});saveLocal();render()}toast("저장했습니다.")}
-async function removeRecord(type,rid){if(!confirm("삭제할까요?"))return;if(state.backend==="firebase"&&state.firebaseReady){await deleteDoc(doc(state.db,"mcWorkspaces",state.settings.workspaceId||DEFAULT_SETTINGS.workspaceId,COLLECTIONS[type],rid))}else{state.data[type]=state.data[type].filter(x=>x.id!==rid);saveLocal();render()}toast("삭제했습니다.")}
-async function completeUpdate(rid){const item=state.data.updates.find(u=>u.id===rid);if(!item)return;const summary=prompt("업데이트 이력에 남길 요약을 입력하세요.",item.title||"업데이트 반영");if(!summary)return;const h={title:item.title||"업데이트 반영",summary,originalDetail:item.detail||"",appliedDate:today(),status:"반영완료"};if(state.backend==="firebase"&&state.firebaseReady){await addDoc(colRef("updateHistory"),{...h,createdAt:serverTimestamp(),updatedAt:serverTimestamp()});await deleteDoc(doc(state.db,"mcWorkspaces",state.settings.workspaceId||DEFAULT_SETTINGS.workspaceId,COLLECTIONS.updates,rid))}else{state.data.updateHistory.unshift({id:id(),...h,createdAt:new Date().toISOString(),updatedAt:new Date().toISOString()});state.data.updates=state.data.updates.filter(u=>u.id!==rid);saveLocal();render()}toast("요청 목록에서 제거하고 업데이트 이력에 남겼습니다.")}
-function toast(msg){const box=$("#toast");const el=document.createElement("div");el.textContent=msg;box.appendChild(el);setTimeout(()=>el.remove(),3000)}
+
+async function saveRecord(type, payload, rid="", options={}){
+  const silent = !!options.silent;
+  if(rid){
+    if(state.backend==="firebase" && state.firebaseReady){
+      await updateDoc(docRef(type,rid), {...payload, updatedAt: serverTimestamp()});
+    }else{
+      state.data[type] = state.data[type].map(x => x.id===rid ? {...x, ...payload, updatedAt:new Date().toISOString()} : x);
+      saveLocal();
+      render();
+    }
+    if(!silent)toast("수정 저장했습니다.");
+    return rid;
+  }
+  if(state.backend==="firebase" && state.firebaseReady){
+    const ref = await addDoc(colRef(type), {...payload, createdAt:serverTimestamp(), updatedAt:serverTimestamp()});
+    if(!silent)toast("저장했습니다.");
+    return ref.id;
+  }
+  const newId = makeId();
+  state.data[type].unshift({id:newId, ...payload, createdAt:new Date().toISOString(), updatedAt:new Date().toISOString()});
+  saveLocal();
+  render();
+  if(!silent)toast("저장했습니다.");
+  return newId;
+}
+async function removeRecord(type,rid){
+  if(!confirm("삭제할까요?"))return;
+  if(state.backend==="firebase"&&state.firebaseReady){await deleteDoc(docRef(type,rid))}
+  else{state.data[type]=state.data[type].filter(x=>x.id!==rid);saveLocal();render()}
+  if(state.editing[type]===rid)state.editing[type]=null;
+  toast("삭제했습니다.")
+}
+async function completeUpdate(rid){
+  const item=state.data.updates.find(u=>u.id===rid);if(!item)return;
+  const summary=prompt("업데이트 이력에 남길 요약을 입력하세요.",item.title||"업데이트 반영");if(!summary)return;
+  const h={title:item.title||"업데이트 반영",summary,originalDetail:item.detail||"",appliedDate:today(),status:"반영완료"};
+  if(state.backend==="firebase"&&state.firebaseReady){await addDoc(colRef("updateHistory"),{...h,createdAt:serverTimestamp(),updatedAt:serverTimestamp()});await deleteDoc(docRef("updates",rid))}
+  else{state.data.updateHistory.unshift({id:makeId(),...h,createdAt:new Date().toISOString(),updatedAt:new Date().toISOString()});state.data.updates=state.data.updates.filter(u=>u.id!==rid);saveLocal();render()}
+  if(state.quickUpdateId===rid){state.quickUpdateId="";localStorage.removeItem(QUICK_ID_KEY);clearQuickDraft()}
+  toast("요청 목록에서 제거하고 업데이트 이력에 남겼습니다.")
+}
+function toast(msg){const box=$("#toast");if(!box)return;const el=document.createElement("div");el.textContent=msg;box.appendChild(el);setTimeout(()=>el.remove(),3000)}
+function showScreenChip(msg){const el=$("#screenChip");if(!el)return;el.textContent=msg;el.classList.add("show");setTimeout(()=>el.classList.remove("show"),1800)}
+
 function head(t,d,a=""){return `<div class="head"><div><h2>${esc(t)}</h2><p>${esc(d)}</p></div><div class="no-print">${a}</div></div>`}
 function stat(t,v,d){return `<div class="card stat"><span>${esc(t)}</span><strong>${v}</strong><span>${esc(d)}</span></div>`}
-function renderNav(){const c={dashboard:"",events:state.data.events.length,reflection:state.data.reflections.length,training:state.data.trainings.length,people:state.data.people.length,updates:state.data.updates.length,settings:""};$("#sideNav").innerHTML=NAV.map(n=>`<button class="${state.activeTab===n.id?"active":""}" data-tab="${n.id}"><span>${n.icon} ${n.label}</span>${c[n.id]!==""?`<span class="count">${c[n.id]}</span>`:""}</button>`).join("");$("#mobileNav").innerHTML=NAV.map(n=>`<option value="${n.id}" ${state.activeTab===n.id?"selected":""}>${n.icon} ${n.label}</option>`).join("");$$("[data-tab]").forEach(b=>b.onclick=()=>{state.activeTab=b.dataset.tab;render()});$("#mobileNav").onchange=e=>{state.activeTab=e.target.value;render()}}
-function render(){renderNav();syncStatus();const map={dashboard:dashboard,events:events,reflection:reflection,training:training,people:people,updates:updates,settings:settings};$("#page").innerHTML=(map[state.activeTab]||dashboard)();bind()}
-function dashboard(){const q=CORE_QUESTIONS[new Date().getDate()%CORE_QUESTIONS.length];return `${head(state.settings.programTitle,state.settings.motto,`<button onclick="window.print()">인쇄</button>`)}<div class="grid four">${stat("행사 기록",state.data.events.length,"행사 후 피드백")}${stat("성찰 답변",state.data.reflections.length,"질문 기반 기록")}${stat("훈련 일지",state.data.trainings.length,"실전 사회 연습")}${stat("업데이트 대기",state.data.updates.length,"반영 전 요청")}</div><div class="grid two" style="margin-top:16px"><div class="card"><h3>오늘의 성찰 질문</h3><div class="quote"><strong>${esc(q.title)}</strong><br>${esc(q.guide)}</div><div class="toolbar"><button class="brand" data-open-reflection="${esc(q.title)}">이 질문으로 기록</button><button class="secondary" data-go="reflection">질문 전체 보기</button></div></div><div class="card"><h3>사회자 핵심 공식</h3><div class="quote"><strong>관찰 → 연결 → 안내 → 여운</strong><br>사람을 보고, 의미를 찾고, 관객이 따라올 길을 열고, 다음 장면에 기대를 남긴다.</div><div class="toolbar"><button class="secondary" data-go="training">훈련 보기</button><button class="secondary" data-go="people">소개자료 정리</button></div></div></div><div class="grid two" style="margin-top:16px"><div class="card white"><h3>최근 행사 기록</h3><div class="list">${state.data.events.slice(0,3).length?state.data.events.slice(0,3).map(eventItem).join(""):`<div class="empty">아직 행사 기록이 없습니다.</div>`}</div></div><div class="card white"><h3>대기 중인 업데이트</h3><div class="list">${state.data.updates.slice(0,4).length?state.data.updates.slice(0,4).map(updateItem).join(""):`<div class="empty">반영 대기 중인 업데이트가 없습니다.</div>`}</div></div></div>`}
-function events(){const types=["전체",...new Set(state.data.events.map(e=>e.type).filter(Boolean))];const list=state.data.events.filter(e=>{const s=[e.title,e.location,e.type,e.keywords,e.people,e.good,e.improve].join(" ").toLowerCase();return(!state.filters.eventSearch||s.includes(state.filters.eventSearch.toLowerCase()))&&(state.filters.eventType==="전체"||e.type===state.filters.eventType)});return `${head("행사기록","언제, 어떤 행사에서 사회를 봤고 무엇을 배웠는지 남깁니다.")}<div class="card"><h3>새 행사 기록</h3><form id="eventForm" class="form-grid"><label>행사일<input type="date" name="date" value="${today()}"></label><label>행사 구분<input name="type" placeholder="예: 음악회, 기념식, 교회행사, 체육대회"></label><label class="full">행사명<input name="title" required placeholder="예: 한소리밴드 작은음악회"></label><label>장소<input name="location" placeholder="예: 에브라임 1층"></label><label>나의 역할<input name="role" placeholder="예: 사회, 수어통역, 진행 보조"></label><label class="full">소개한 사람/팀<textarea name="people" placeholder="시의원, 시설장, 공연팀, 순서자 등"></textarea></label><label class="full">좋았던 점<textarea name="good" placeholder="관객 반응, 자연스러웠던 연결, 준비가 잘 된 부분"></textarea></label><label class="full">아쉬운 점 / 피드백<textarea name="improve" placeholder="말이 길었음, 소개 정보 부족, 유머 타이밍 등"></textarea></label><label class="full">다음 훈련 과제<textarea name="next" placeholder="다음 행사 전 연습할 것 1~3개"></textarea></label><label class="full">키워드<input name="keywords" placeholder="예: 친근함, 관찰, 통찰, 질문, 유머, 주님소개"></label><div class="full toolbar"><button class="brand" type="submit">행사 저장</button><button class="secondary" type="reset">초기화</button></div></form></div><div class="card white" style="margin-top:16px"><h3>기록 목록</h3><div class="toolbar"><input id="eventSearch" placeholder="행사명, 장소, 피드백 검색" value="${esc(state.filters.eventSearch)}" style="max-width:360px"><select id="eventTypeFilter" style="max-width:220px">${types.map(t=>`<option ${state.filters.eventType===t?"selected":""}>${esc(t)}</option>`).join("")}</select></div><div class="list">${list.length?list.map(eventItem).join(""):`<div class="empty">조건에 맞는 기록이 없습니다.</div>`}</div></div>`}
-function eventItem(e){return `<article class="item"><div class="item-head"><div><h4>${esc(e.title||"제목 없음")}</h4><small>${esc(e.date||dateVal(e.createdAt)||"날짜 없음")} · ${esc(e.location||"장소 미기록")}</small></div><button class="small danger" data-del="events:${e.id}">삭제</button></div><div class="meta">${e.type?`<span class="chip brand">${esc(e.type)}</span>`:""}${e.role?`<span class="chip">${esc(e.role)}</span>`:""}${e.keywords?String(e.keywords).split(",").slice(0,6).map(k=>`<span class="chip warn">#${esc(k.trim())}</span>`).join(""):""}</div>${e.people?`<div><strong>소개/관찰</strong><p>${br(e.people)}</p></div>`:""}${e.good?`<div><strong>좋았던 점</strong><p>${br(e.good)}</p></div>`:""}${e.improve?`<div><strong>피드백</strong><p>${br(e.improve)}</p></div>`:""}${e.next?`<div class="quote"><strong>다음 훈련</strong><br>${br(e.next)}</div>`:""}</article>`}
-function reflection(){return `${head("성찰질문","좋은 사회를 위해 스스로에게 던질 질문을 기록합니다.")}<div class="grid two"><div class="card"><h3>질문으로 기록하기</h3><form id="reflectionForm" class="form-grid"><label>날짜<input type="date" name="date" value="${today()}"></label><label>상황<input name="context" placeholder="예: 행사 전 준비, 행사 후 피드백"></label><label class="full">질문<input name="question" id="reflectionQuestion" required placeholder="질문을 선택하거나 직접 입력"></label><label class="full">나의 답변<textarea name="answer" required placeholder="생각, 깨달음, 다음 행동을 적어보세요."></textarea></label><label class="full">다음 행동<input name="action" placeholder="예: 내빈 소개 멘트 3개 준비하기"></label><div class="full toolbar"><button class="brand" type="submit">성찰 저장</button></div></form></div><div class="card white"><h3>핵심 질문</h3><div class="list">${CORE_QUESTIONS.map(q=>`<div class="item"><div class="meta"><span class="chip brand">${esc(q.tag)}</span></div><strong>${esc(q.title)}</strong><p>${esc(q.guide)}</p><button class="small secondary" data-use-question="${esc(q.title)}">이 질문 사용</button></div>`).join("")}</div></div></div><div class="card white" style="margin-top:16px"><h3>성찰 이력</h3><div class="list">${state.data.reflections.length?state.data.reflections.map(reflectionItem).join(""):`<div class="empty">아직 성찰 기록이 없습니다.</div>`}</div></div>`}
-function reflectionItem(r){return `<article class="item"><div class="item-head"><div><h4>${esc(r.question||"질문 없음")}</h4><small>${esc(r.date||dateVal(r.createdAt)||"날짜 없음")} · ${esc(r.context||"상황 미기록")}</small></div><button class="small danger" data-del="reflections:${r.id}">삭제</button></div><p>${br(r.answer||"")}</p>${r.action?`<div class="quote"><strong>다음 행동</strong><br>${br(r.action)}</div>`:""}</article>`}
-function training(){return `${head("사회훈련","사회자는 타고나는 사람이 아니라 관찰과 기록으로 다듬어지는 사람입니다.")}<div class="grid two"><div class="card white"><h3>훈련 구조</h3><div class="list">${TRAINING_STEPS.map((s,i)=>`<div class="item training-step"><div class="step-no">${i+1}</div><div><h4>${esc(s.title)}</h4><p><strong>목표</strong> ${esc(s.goal)}</p><p><strong>방법</strong> ${esc(s.method)}</p><div class="quote"><strong>점검</strong><br>${esc(s.check)}</div></div></div>`).join("")}</div></div><div class="card"><h3>훈련 일지 쓰기</h3><form id="trainingForm" class="form-grid"><label>훈련일<input type="date" name="date" value="${today()}"></label><label>훈련 종류<select name="type">${TRAINING_STEPS.map(s=>`<option>${esc(s.title)}</option>`).join("")}<option>직접 입력</option></select></label><label class="full">훈련 내용<textarea name="content" required placeholder="무엇을 어떻게 연습했나요?"></textarea></label><label class="full">자가 점검<textarea name="review" placeholder="잘 된 점, 어색한 점, 말투, 속도, 표정, 시선"></textarea></label><label class="full">다음 훈련<input name="next" placeholder="다음에 바로 해볼 것"></label><div class="full toolbar"><button class="brand" type="submit">훈련 저장</button></div></form></div></div><div class="card white" style="margin-top:16px"><h3>훈련 이력</h3><div class="list">${state.data.trainings.length?state.data.trainings.map(trainingItem).join(""):`<div class="empty">아직 훈련 기록이 없습니다.</div>`}</div></div>`}
-function trainingItem(t){return `<article class="item"><div class="item-head"><div><h4>${esc(t.type||"훈련")}</h4><small>${esc(t.date||dateVal(t.createdAt)||"날짜 없음")}</small></div><button class="small danger" data-del="trainings:${t.id}">삭제</button></div><p>${br(t.content||"")}</p>${t.review?`<div><strong>자가 점검</strong><p>${br(t.review)}</p></div>`:""}${t.next?`<div class="quote"><strong>다음 훈련</strong><br>${br(t.next)}</div>`:""}</article>`}
-function people(){return `${head("소개자료","시의원, 내빈, 순서자, 공연팀, 신앙 고백형 소개까지 자료를 쌓아둡니다.")}<div class="grid two"><div class="card"><h3>인물/팀 소개자료 추가</h3><form id="peopleForm" class="form-grid"><label>구분<input name="category" placeholder="예: 시의원, 시설장, 공연팀, 목회자, 팀"></label><label>이름/팀명<input name="name" required placeholder="예: ○○○ 시의원"></label><label class="full">직함/소속<input name="title" placeholder="예: 통영시의회 의원"></label><label class="full">이력/내역<textarea name="history" placeholder="주요 이력, 행사와 관련된 활동, 기억할 내용"></textarea></label><label class="full">관찰 포인트<textarea name="observation" placeholder="성격, 관심사, 좋아할 만한 표현, 주의할 점"></textarea></label><label class="full">소개 멘트 초안<textarea name="script" placeholder="실제 사회에서 바로 읽거나 다듬을 멘트"></textarea></label><div class="full toolbar"><button class="brand" type="submit">소개자료 저장</button></div></form></div><div class="card white"><h3>소개 멘트 템플릿</h3><div class="list">${INTRO_TEMPLATES.map(t=>`<div class="item"><strong>${esc(t.title)}</strong><p>${esc(t.body)}</p><button class="small secondary" data-copy="${esc(t.body)}">멘트 복사</button></div>`).join("")}</div></div></div><div class="card white" style="margin-top:16px"><h3>소개자료 목록</h3><div class="list">${state.data.people.length?state.data.people.map(personItem).join(""):`<div class="empty">아직 소개자료가 없습니다.</div>`}</div></div>`}
-function personItem(p){return `<article class="item"><div class="item-head"><div><h4>${esc(p.name||"이름 없음")}</h4><small>${esc(p.title||"직함 미기록")}</small></div><button class="small danger" data-del="people:${p.id}">삭제</button></div><div class="meta">${p.category?`<span class="chip brand">${esc(p.category)}</span>`:""}</div>${p.history?`<div><strong>이력/내역</strong><p>${br(p.history)}</p></div>`:""}${p.observation?`<div><strong>관찰 포인트</strong><p>${br(p.observation)}</p></div>`:""}${p.script?`<div class="quote"><strong>소개 멘트</strong><br>${br(p.script)}</div>`:""}</article>`}
-function updates(){return `${head("업데이트","개선 요청은 대기 목록에 남기고, 반영 완료 시 요청은 삭제되며 이력에 요약됩니다.")}<div class="grid two"><div class="card"><h3>업데이트 요청 추가</h3><form id="updateForm" class="form-grid"><label>요청일<input type="date" name="date" value="${today()}"></label><label>우선순위<select name="priority"><option>보통</option><option>높음</option><option>낮음</option></select></label><label class="full">제목<input name="title" required placeholder="예: 성찰 질문 페이지 개선"></label><label class="full">요청 내용<textarea name="detail" required placeholder="어떤 기능을 어떻게 바꾸고 싶은지 적어주세요."></textarea></label><div class="full toolbar"><button class="brand" type="submit">요청 저장</button></div></form></div><div class="card white"><h3>업데이트 운영 원칙</h3><div class="quote"><strong>대기 → 반영 → 이력</strong><br>요청은 작업 전까지 보관합니다. 반영 버튼을 누르면 대기 목록에서는 사라지고, 업데이트 이력에는 “무엇이 바뀌었는지” 요약만 남습니다.</div><p>이 방식은 현재 할 일과 지난 변경사항이 섞이지 않게 해줍니다.</p></div></div><div class="grid two" style="margin-top:16px"><div class="card white"><h3>반영 대기</h3><div class="list">${state.data.updates.length?state.data.updates.map(updateItem).join(""):`<div class="empty">대기 중인 업데이트가 없습니다.</div>`}</div></div><div class="card white"><h3>업데이트 이력</h3><div class="list">${state.data.updateHistory.length?state.data.updateHistory.map(historyItem).join(""):`<div class="empty">아직 업데이트 이력이 없습니다.</div>`}</div></div></div>`}
-function updateItem(u){const pc=u.priority==="높음"?"danger":u.priority==="낮음"?"good":"warn";return `<article class="item"><div class="item-head"><div><h4>${esc(u.title||"업데이트")}</h4><small>${esc(u.date||dateVal(u.createdAt)||"날짜 없음")}</small></div><div class="toolbar" style="margin:0"><button class="small good" data-complete="${u.id}">반영완료</button><button class="small danger" data-del="updates:${u.id}">삭제</button></div></div><div class="meta"><span class="chip ${pc}">${esc(u.priority||"보통")}</span></div><p>${br(u.detail||"")}</p></article>`}
-function historyItem(h){return `<article class="item"><div class="item-head"><div><h4>${esc(h.title||"업데이트 반영")}</h4><small>${esc(h.appliedDate||dateVal(h.createdAt)||"날짜 없음")} · ${esc(h.status||"반영완료")}</small></div><button class="small danger" data-del="updateHistory:${h.id}">삭제</button></div><div class="quote">${br(h.summary||"")}</div>${h.originalDetail?`<details><summary>원래 요청 보기</summary><p>${br(h.originalDetail)}</p></details>`:""}</article>`}
-function settings(){const sample=`{\n  "apiKey": "YOUR_API_KEY",\n  "authDomain": "YOUR_PROJECT.firebaseapp.com",\n  "projectId": "YOUR_PROJECT_ID",\n  "storageBucket": "YOUR_PROJECT.appspot.com",\n  "messagingSenderId": "YOUR_SENDER_ID",\n  "appId": "YOUR_APP_ID"\n}`;return `${head("설정","Firebase 설정 전에는 브라우저 저장소로 테스트하고, 설정 후에는 Firestore 실시간 동기화로 사용합니다.")}<div class="grid two"><div class="card"><h3>기본 설정</h3><form id="settingsForm" class="form-grid"><label class="full">프로그램 제목<input name="programTitle" value="${esc(state.settings.programTitle)}"></label><label>사용자 이름<input name="ownerName" value="${esc(state.settings.ownerName)}"></label><label>작업공간 ID<input name="workspaceId" value="${esc(state.settings.workspaceId)}"></label><label class="full">핵심 문장<textarea name="motto">${esc(state.settings.motto)}</textarea></label><label class="full">Firebase Config JSON<textarea name="firebaseConfigText" placeholder='${esc(sample)}'>${esc(state.settings.firebaseConfigText)}</textarea></label><div class="full toolbar"><button class="brand" type="submit">설정 저장</button><button class="secondary" type="button" id="exportBtn">백업 JSON 내보내기</button><button class="secondary" type="button" id="importBtn">백업 JSON 불러오기</button><input id="importFile" type="file" accept="application/json" class="hide"></div></form></div><div class="card white"><h3>사용 방법</h3><p><strong>1.</strong> 처음에는 이 HTML 파일을 열어서 테스트합니다. 자료는 현재 브라우저에 저장됩니다.</p><p><strong>2.</strong> Firebase Console에서 웹 앱을 만들고 Config 값을 JSON 형식으로 붙여 넣습니다.</p><p><strong>3.</strong> Firestore Database를 만든 뒤 보안 규칙을 설정합니다. 테스트용 공개 규칙은 오래 쓰지 않는 것이 좋습니다.</p><p><strong>4.</strong> 여러 기기에서 같은 작업공간 ID를 쓰면 같은 자료를 실시간으로 볼 수 있습니다.</p><div class="quote"><strong>현재 버전</strong><br>${APP_VERSION}</div></div></div>`}
-function bind(){
- const formMap={eventForm:"events",reflectionForm:"reflections",trainingForm:"trainings",peopleForm:"people",updateForm:"updates"};Object.entries(formMap).forEach(([fid,type])=>{$("#"+fid)?.addEventListener("submit",async e=>{e.preventDefault();await addRecord(type,Object.fromEntries(new FormData(e.currentTarget).entries()));e.currentTarget.reset()})});
- $("#settingsForm")?.addEventListener("submit",e=>{e.preventDefault();state.settings={...state.settings,...Object.fromEntries(new FormData(e.currentTarget).entries())};saveLocal();toast("설정을 저장했습니다. Firebase 연결은 새로고침 후 적용됩니다.");setTimeout(()=>location.reload(),700)});
- $("#eventSearch")?.addEventListener("input",e=>{state.filters.eventSearch=e.target.value;render()});$("#eventTypeFilter")?.addEventListener("change",e=>{state.filters.eventType=e.target.value;render()});
- $$('[data-del]').forEach(b=>b.onclick=()=>{const [t,rid]=b.dataset.del.split(":");removeRecord(t,rid)});$$('[data-complete]').forEach(b=>b.onclick=()=>completeUpdate(b.dataset.complete));
- $$('[data-use-question]').forEach(b=>b.onclick=()=>{const input=$("#reflectionQuestion");if(input)input.value=b.dataset.useQuestion;scrollTo({top:0,behavior:"smooth"})});
- $$('[data-open-reflection]').forEach(b=>b.onclick=()=>{state.activeTab="reflection";render();setTimeout(()=>{$("#reflectionQuestion").value=b.dataset.openReflection},0)});$$('[data-go]').forEach(b=>b.onclick=()=>{state.activeTab=b.dataset.go;render()});
- $$('[data-copy]').forEach(b=>b.onclick=async()=>{await navigator.clipboard.writeText(b.dataset.copy||"");toast("멘트를 복사했습니다.")});
- $("#exportBtn")?.addEventListener("click",()=>{const blob=new Blob([JSON.stringify({version:APP_VERSION,settings:state.settings,data:state.data},null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=`사회일치_백업_${today()}.json`;a.click();URL.revokeObjectURL(a.href)});
- $("#importBtn")?.addEventListener("click",()=>$("#importFile")?.click());$("#importFile")?.addEventListener("change",async e=>{const f=e.target.files?.[0];if(!f)return;try{const p=JSON.parse(await f.text());state.settings={...DEFAULT_SETTINGS,...(p.settings||{})};state.data={...state.data,...(p.data||{})};saveLocal();toast("백업을 불러왔습니다.");render()}catch{toast("백업 파일을 읽지 못했습니다.")}})
+function editBanner(type){const rid=state.editing[type];if(!rid)return"";return `<div class="edit-banner">이전 기록을 불러와 수정 중입니다. 저장하면 기존 기록이 수정됩니다.</div>`}
+function formButtons(type, saveText="저장"){const editing=!!state.editing[type];return `<div class="full toolbar"><button class="brand" type="submit">${editing?"수정 저장":saveText}</button>${editing?`<button class="secondary" type="button" data-cancel-edit="${type}">새 기록으로 전환</button>`:""}</div>`}
+function val(obj,key,def=""){return esc(obj?.[key] ?? def)}
+function progressBar(v){const n=Math.max(0,Math.min(100,Number(v||0)));return `<div class="progress" aria-label="진행률 ${n}%"><span style="width:${n}%"></span></div>`}
+
+function renderNav(){
+  const c={dashboard:"",tasks:state.data.tasks.length,events:state.data.events.length,reflection:state.data.reflections.length,training:state.data.trainings.length,people:state.data.people.length,updates:state.data.updates.length,settings:""};
+  $("#sideNav").innerHTML=NAV.map(n=>`<button class="${state.activeTab===n.id?"active":""}" data-tab="${n.id}"><span>${n.icon} ${n.label}</span>${c[n.id]!==""?`<span class="count">${c[n.id]}</span>`:""}</button>`).join("");
+  $("#mobileNav").innerHTML=NAV.map(n=>`<option value="${n.id}" ${state.activeTab===n.id?"selected":""}>${n.icon} ${n.label}</option>`).join("");
+  $$('[data-tab]').forEach(b=>b.onclick=()=>{state.activeTab=b.dataset.tab;render()});
+  $("#mobileNav").onchange=e=>{state.activeTab=e.target.value;render()};
 }
-document.addEventListener("keydown",e=>{if(e.altKey&&!e.shiftKey&&!e.ctrlKey){const i=Number(e.key)-1;if(NAV[i]){state.activeTab=NAV[i].id;render()}}});$("#randomInsightBtn").onclick=()=>{const q=CORE_QUESTIONS[Math.floor(Math.random()*CORE_QUESTIONS.length)];$("#todayInsight").textContent=`${q.title} — ${q.guide}`};
-loadLocal();render();initFirebase();
+function render(){
+  renderNav();syncStatus();updateQuickScreen();
+  const map={dashboard,tasks,events,reflection,training,people,updates,settings};
+  $("#page").innerHTML=(map[state.activeTab]||dashboard)();
+  bind();
+}
+
+function dashboard(){
+  const q=CORE_QUESTIONS[new Date().getDate()%CORE_QUESTIONS.length];
+  const openTasks=state.data.tasks.filter(t=>t.status!=="완료");
+  return `${head(state.settings.programTitle,state.settings.motto,`<button onclick="window.print()">인쇄</button>`)}
+  <div class="grid four">${stat("목표·할일",openTasks.length,"진행 중")}${stat("행사 기록",state.data.events.length,"행사 후 피드백")}${stat("소개자료",state.data.people.length,"인물·팀 기록")}${stat("업데이트 대기",state.data.updates.length,"반영 전 요청")}</div>
+  <div class="grid two" style="margin-top:16px">
+    <div class="card"><h3>오늘의 성찰 질문</h3><div class="quote"><strong>${esc(q.title)}</strong><br>${esc(q.guide)}</div><div class="toolbar"><button class="brand" data-open-reflection="${esc(q.title)}">이 질문으로 기록</button><button class="secondary" data-go="reflection">질문 전체 보기</button></div></div>
+    <div class="card"><h3>빠른 단축키</h3><p><span class="kbd">Ctrl</span> + <span class="kbd">U</span> 업데이트 메모 열기/닫기</p><p><span class="kbd">Ctrl</span> + <span class="kbd">G</span> ChatGPT 대화 연결</p><p>이전 기록은 목록에서 클릭하면 바로 불러와 수정할 수 있습니다.</p><div class="toolbar"><button class="secondary" data-go="tasks">할일 추적</button><button class="secondary" data-go="people">소개 준비</button></div></div>
+  </div>
+  <div class="grid two" style="margin-top:16px">
+    <div class="card white"><h3>진행 중 할 일</h3><div class="list">${openTasks.slice(0,4).length?openTasks.slice(0,4).map(taskItem).join(""):`<div class="empty">진행 중인 할 일이 없습니다.</div>`}</div></div>
+    <div class="card white"><h3>최근 업데이트 메모</h3><div class="list">${state.data.updates.slice(0,4).length?state.data.updates.slice(0,4).map(updateItem).join(""):`<div class="empty">대기 중인 업데이트가 없습니다.</div>`}</div></div>
+  </div>`;
+}
+
+function tasks(){
+  const e=getRecord("tasks",state.editing.tasks)||{};
+  const list=state.data.tasks.filter(t=>state.filters.taskStatus==="전체"||t.status===state.filters.taskStatus);
+  return `${head("목표·할일","달성해야 할 일, 준비할 일, 진행률을 기록하고 추적합니다.")}
+  <div class="grid two"><div class="card"><div class="record-form-title"><h3>${state.editing.tasks?"할일 수정":"새 할일 기록"}</h3></div>${editBanner("tasks")}
+  <form id="taskForm" class="form-grid">
+    <label class="full">제목<input name="title" required value="${val(e,"title")}" placeholder="예: 시의원 소개 멘트 사전 질문하기"></label>
+    <label>마감일<input type="date" name="dueDate" value="${val(e,"dueDate",today())}"></label>
+    <label>상태<select name="status"><option ${e.status==="대기"?"selected":""}>대기</option><option ${!e.status||e.status==="진행중"?"selected":""}>진행중</option><option ${e.status==="완료"?"selected":""}>완료</option><option ${e.status==="보류"?"selected":""}>보류</option></select></label>
+    <label>진행률<input type="number" name="progress" min="0" max="100" value="${val(e,"progress","0")}"></label>
+    <label>관련 행사<input name="eventName" value="${val(e,"eventName")}" placeholder="예: 농아인의 날 기념식"></label>
+    <label class="full">해야 할 내용<textarea name="detail" placeholder="무엇을 준비하고 확인해야 하나요?">${val(e,"detail")}</textarea></label>
+    <label class="full">확인 내역<textarea name="checkLog" placeholder="연락, 확인, 진행 상황을 기록하세요.">${val(e,"checkLog")}</textarea></label>
+    <label class="full">다음 행동<input name="nextAction" value="${val(e,"nextAction")}" placeholder="바로 다음에 할 행동"></label>
+    ${formButtons("tasks","할일 저장")}
+  </form></div>
+  <div class="card white"><h3>추적 기준</h3><div class="quote"><strong>기록 → 확인 → 다음 행동</strong><br>해야 할 일을 쓰고, 확인한 내역을 남기고, 다음 행동을 한 줄로 정리합니다.</div><p>예: “시의원님 사전 만남 → 어떤 식으로 소개되면 좋은지 질문 → 소개 멘트 초안 작성 → 행사 전 최종 확인”</p></div></div>
+  <div class="card white" style="margin-top:16px"><h3>할일 목록</h3><div class="toolbar"><select id="taskStatusFilter" style="max-width:200px"><option ${state.filters.taskStatus==="전체"?"selected":""}>전체</option><option ${state.filters.taskStatus==="대기"?"selected":""}>대기</option><option ${state.filters.taskStatus==="진행중"?"selected":""}>진행중</option><option ${state.filters.taskStatus==="완료"?"selected":""}>완료</option><option ${state.filters.taskStatus==="보류"?"selected":""}>보류</option></select></div><div class="list">${list.length?list.map(taskItem).join(""):`<div class="empty">기록된 할 일이 없습니다.</div>`}</div></div>`;
+}
+function taskItem(t){const pc=t.status==="완료"?"good":t.status==="보류"?"danger":"warn";return `<article class="item clickable" data-open-record="tasks:${t.id}"><div class="item-head"><div><h4>${esc(t.title||"할일")}</h4><small>마감 ${esc(t.dueDate||"미정")} · ${esc(t.eventName||"관련 행사 없음")}</small></div><div class="row-actions"><button class="small secondary" data-edit="tasks:${t.id}">불러오기/수정</button><button class="small danger" data-del="tasks:${t.id}">삭제</button></div></div><div class="meta"><span class="chip ${pc}">${esc(t.status||"진행중")}</span><span class="chip brand">${esc(t.progress||0)}%</span></div>${progressBar(t.progress)}${t.detail?`<p>${br(t.detail)}</p>`:""}${t.checkLog?`<div><strong>확인 내역</strong><p>${br(t.checkLog)}</p></div>`:""}${t.nextAction?`<div class="quote"><strong>다음 행동</strong><br>${br(t.nextAction)}</div>`:""}</article>`}
+
+function events(){
+  const e=getRecord("events",state.editing.events)||{};
+  const types=["전체",...new Set(state.data.events.map(x=>x.type).filter(Boolean))];
+  const filtered=state.data.events.filter(x=>{const s=[x.title,x.location,x.type,x.keywords,x.people,x.good,x.improve].join(" ").toLowerCase();return(!state.filters.eventSearch||s.includes(state.filters.eventSearch.toLowerCase()))&&(state.filters.eventType==="전체"||x.type===state.filters.eventType)});
+  return `${head("행사기록","언제, 어떤 행사에서 사회를 봤고 무엇을 배웠는지 남깁니다.")}
+  <div class="card"><div class="record-form-title"><h3>${state.editing.events?"행사 기록 수정":"새 행사 기록"}</h3></div>${editBanner("events")}
+  <form id="eventForm" class="form-grid"><label>행사일<input type="date" name="date" value="${val(e,"date",today())}"></label><label>행사 구분<input name="type" value="${val(e,"type")}" placeholder="예: 음악회, 기념식, 교회행사, 체육대회"></label><label class="full">행사명<input name="title" required value="${val(e,"title")}" placeholder="예: 한소리밴드 작은음악회"></label><label>장소<input name="location" value="${val(e,"location")}" placeholder="예: 에브라임 1층"></label><label>나의 역할<input name="role" value="${val(e,"role")}" placeholder="예: 사회, 수어통역, 진행 보조"></label><label class="full">소개한 사람/팀<textarea name="people" placeholder="시의원, 시설장, 공연팀, 순서자 등">${val(e,"people")}</textarea></label><label class="full">좋았던 점<textarea name="good" placeholder="관객 반응, 자연스러웠던 연결, 준비가 잘 된 부분">${val(e,"good")}</textarea></label><label class="full">아쉬운 점 / 피드백<textarea name="improve" placeholder="말이 길었음, 소개 정보 부족, 유머 타이밍 등">${val(e,"improve")}</textarea></label><label class="full">다음 훈련 과제<textarea name="next" placeholder="다음 행사 전 연습할 것 1~3개">${val(e,"next")}</textarea></label><label class="full">키워드<input name="keywords" value="${val(e,"keywords")}" placeholder="예: 친근함, 관찰, 통찰, 질문, 유머, 주님소개"></label>${formButtons("events","행사 저장")}</form></div>
+  <div class="card white" style="margin-top:16px"><h3>기록 목록</h3><div class="toolbar"><input id="eventSearch" placeholder="행사명, 장소, 피드백 검색" value="${esc(state.filters.eventSearch)}" style="max-width:360px"><select id="eventTypeFilter" style="max-width:220px">${types.map(t=>`<option ${state.filters.eventType===t?"selected":""}>${esc(t)}</option>`).join("")}</select></div><div class="list">${filtered.length?filtered.map(eventItem).join(""):`<div class="empty">조건에 맞는 기록이 없습니다.</div>`}</div></div>`;
+}
+function eventItem(e){return `<article class="item clickable" data-open-record="events:${e.id}"><div class="item-head"><div><h4>${esc(e.title||"제목 없음")}</h4><small>${esc(e.date||dateVal(e.createdAt)||"날짜 없음")} · ${esc(e.location||"장소 미기록")}</small></div><div class="row-actions"><button class="small secondary" data-edit="events:${e.id}">불러오기/수정</button><button class="small danger" data-del="events:${e.id}">삭제</button></div></div><div class="meta">${e.type?`<span class="chip brand">${esc(e.type)}</span>`:""}${e.role?`<span class="chip">${esc(e.role)}</span>`:""}${e.keywords?String(e.keywords).split(",").slice(0,6).map(k=>`<span class="chip warn">#${esc(k.trim())}</span>`).join(""):""}</div>${e.people?`<div><strong>소개/관찰</strong><p>${br(e.people)}</p></div>`:""}${e.good?`<div><strong>좋았던 점</strong><p>${br(e.good)}</p></div>`:""}${e.improve?`<div><strong>피드백</strong><p>${br(e.improve)}</p></div>`:""}${e.next?`<div class="quote"><strong>다음 훈련</strong><br>${br(e.next)}</div>`:""}</article>`}
+
+function reflection(){
+  const e=getRecord("reflections",state.editing.reflections)||{};
+  return `${head("성찰질문","좋은 사회를 위해 스스로에게 던질 질문을 기록합니다.")}
+  <div class="grid two"><div class="card"><div class="record-form-title"><h3>${state.editing.reflections?"성찰 기록 수정":"질문으로 기록하기"}</h3></div>${editBanner("reflections")}
+  <form id="reflectionForm" class="form-grid"><label>날짜<input type="date" name="date" value="${val(e,"date",today())}"></label><label>상황<input name="context" value="${val(e,"context")}" placeholder="예: 행사 전 준비, 행사 후 피드백"></label><label class="full">질문<input name="question" id="reflectionQuestion" required value="${val(e,"question")}" placeholder="질문을 선택하거나 직접 입력"></label><label class="full">나의 답변<textarea name="answer" required placeholder="생각, 깨달음, 다음 행동을 적어보세요.">${val(e,"answer")}</textarea></label><label class="full">다음 행동<input name="action" value="${val(e,"action")}" placeholder="예: 내빈 소개 멘트 3개 준비하기"></label>${formButtons("reflections","성찰 저장")}</form></div>
+  <div class="card white"><h3>핵심 질문</h3><div class="list">${CORE_QUESTIONS.map(q=>`<div class="item"><div class="meta"><span class="chip brand">${esc(q.tag)}</span></div><strong>${esc(q.title)}</strong><p>${esc(q.guide)}</p><button class="small secondary" data-use-question="${esc(q.title)}">이 질문 사용</button></div>`).join("")}</div></div></div>
+  <div class="card white" style="margin-top:16px"><h3>성찰 이력</h3><div class="list">${state.data.reflections.length?state.data.reflections.map(reflectionItem).join(""):`<div class="empty">아직 성찰 기록이 없습니다.</div>`}</div></div>`;
+}
+function reflectionItem(r){return `<article class="item clickable" data-open-record="reflections:${r.id}"><div class="item-head"><div><h4>${esc(r.question||"질문 없음")}</h4><small>${esc(r.date||dateVal(r.createdAt)||"날짜 없음")} · ${esc(r.context||"상황 미기록")}</small></div><div class="row-actions"><button class="small secondary" data-edit="reflections:${r.id}">불러오기/수정</button><button class="small danger" data-del="reflections:${r.id}">삭제</button></div></div><p>${br(r.answer||"")}</p>${r.action?`<div class="quote"><strong>다음 행동</strong><br>${br(r.action)}</div>`:""}</article>`}
+
+function training(){
+  const e=getRecord("trainings",state.editing.trainings)||{};
+  return `${head("사회훈련","사회자는 타고나는 사람이 아니라 관찰과 기록으로 다듬어지는 사람입니다.")}
+  <div class="grid two"><div class="card white"><h3>훈련 구조</h3><div class="list">${TRAINING_STEPS.map((s,i)=>`<div class="item training-step"><div class="step-no">${i+1}</div><div><h4>${esc(s.title)}</h4><p><strong>목표</strong> ${esc(s.goal)}</p><p><strong>방법</strong> ${esc(s.method)}</p><div class="quote"><strong>점검</strong><br>${esc(s.check)}</div></div></div>`).join("")}</div></div>
+  <div class="card"><div class="record-form-title"><h3>${state.editing.trainings?"훈련 일지 수정":"훈련 일지 쓰기"}</h3></div>${editBanner("trainings")}
+  <form id="trainingForm" class="form-grid"><label>훈련일<input type="date" name="date" value="${val(e,"date",today())}"></label><label>훈련 종류<select name="type">${TRAINING_STEPS.map(s=>`<option ${e.type===s.title?"selected":""}>${esc(s.title)}</option>`).join("")}<option ${e.type==="직접 입력"?"selected":""}>직접 입력</option></select></label><label class="full">훈련 내용<textarea name="content" required placeholder="무엇을 어떻게 연습했나요?">${val(e,"content")}</textarea></label><label class="full">자가 점검<textarea name="review" placeholder="잘 된 점, 어색한 점, 말투, 속도, 표정, 시선">${val(e,"review")}</textarea></label><label class="full">다음 훈련<input name="next" value="${val(e,"next")}" placeholder="다음에 바로 해볼 것"></label>${formButtons("trainings","훈련 저장")}</form></div></div>
+  <div class="card white" style="margin-top:16px"><h3>훈련 이력</h3><div class="list">${state.data.trainings.length?state.data.trainings.map(trainingItem).join(""):`<div class="empty">아직 훈련 기록이 없습니다.</div>`}</div></div>`;
+}
+function trainingItem(t){return `<article class="item clickable" data-open-record="trainings:${t.id}"><div class="item-head"><div><h4>${esc(t.type||"훈련")}</h4><small>${esc(t.date||dateVal(t.createdAt)||"날짜 없음")}</small></div><div class="row-actions"><button class="small secondary" data-edit="trainings:${t.id}">불러오기/수정</button><button class="small danger" data-del="trainings:${t.id}">삭제</button></div></div><p>${br(t.content||"")}</p>${t.review?`<div><strong>자가 점검</strong><p>${br(t.review)}</p></div>`:""}${t.next?`<div class="quote"><strong>다음 훈련</strong><br>${br(t.next)}</div>`:""}</article>`}
+
+function people(){
+  const e=getRecord("people",state.editing.people)||{};
+  const questionsText=PREP_QUESTIONS.map((q,i)=>`${i+1}. ${q}\n답변: `).join("\n\n");
+  return `${head("소개자료","시의원, 내빈, 순서자, 공연팀, 신앙 고백형 소개까지 자료를 쌓아둡니다.")}
+  <div class="grid two"><div class="card"><div class="record-form-title"><h3>${state.editing.people?"소개자료 수정":"인물/팀 소개자료 추가"}</h3></div>${editBanner("people")}
+  <form id="peopleForm" class="form-grid"><label>구분<input name="category" value="${val(e,"category")}" placeholder="예: 시의원, 시설장, 공연팀, 목회자, 팀"></label><label>이름/팀명<input name="name" required value="${val(e,"name")}" placeholder="예: ○○○ 시의원"></label><label class="full">직함/소속<input name="title" value="${val(e,"title")}" placeholder="예: 통영시의회 의원"></label><label class="full">사전 질문 답변<textarea name="prepAnswers" id="prepAnswers" placeholder="사전에 만났을 때 질문하고 받은 답변을 기록하세요.">${val(e,"prepAnswers")}</textarea></label><label class="full">이력/내역<textarea name="history" placeholder="주요 이력, 행사와 관련된 활동, 기억할 내용">${val(e,"history")}</textarea></label><label class="full">관찰 포인트<textarea name="observation" placeholder="성격, 관심사, 좋아할 만한 표현, 주의할 점">${val(e,"observation")}</textarea></label><label class="full">소개 멘트 초안<textarea name="script" placeholder="실제 사회에서 바로 읽거나 다듬을 멘트">${val(e,"script")}</textarea></label><div class="full toolbar"><button type="button" class="secondary" id="loadPrepQuestionsBtn">사전 질문 불러오기</button><button type="button" class="ghost" data-copy="${esc(questionsText)}">질문지 복사</button></div>${formButtons("people","소개자료 저장")}</form></div>
+  <div class="card white"><h3>소개 전 질문지</h3><ol class="pre-questions">${PREP_QUESTIONS.map(q=>`<li>${esc(q)}</li>`).join("")}</ol><div class="quote"><strong>사용 예</strong><br>시의원님을 사전에 만날 기회가 있으면 “오늘 어떤 점이 가장 잘 소개되면 좋을까요?”라고 질문하고, 답변을 바탕으로 소개 멘트를 준비합니다.</div><h3 style="margin-top:18px">소개 멘트 템플릿</h3><div class="list">${INTRO_TEMPLATES.map(t=>`<div class="item"><strong>${esc(t.title)}</strong><p>${esc(t.body)}</p><button class="small secondary" data-copy="${esc(t.body)}">멘트 복사</button></div>`).join("")}</div></div></div>
+  <div class="card white" style="margin-top:16px"><h3>소개자료 목록</h3><div class="list">${state.data.people.length?state.data.people.map(personItem).join(""):`<div class="empty">아직 소개자료가 없습니다.</div>`}</div></div>`;
+}
+function personItem(p){return `<article class="item clickable" data-open-record="people:${p.id}"><div class="item-head"><div><h4>${esc(p.name||"이름 없음")}</h4><small>${esc(p.title||"직함 미기록")}</small></div><div class="row-actions"><button class="small secondary" data-edit="people:${p.id}">불러오기/수정</button><button class="small danger" data-del="people:${p.id}">삭제</button></div></div><div class="meta">${p.category?`<span class="chip brand">${esc(p.category)}</span>`:""}</div>${p.prepAnswers?`<div><strong>사전 질문 답변</strong><p>${br(p.prepAnswers)}</p></div>`:""}${p.history?`<div><strong>이력/내역</strong><p>${br(p.history)}</p></div>`:""}${p.observation?`<div><strong>관찰 포인트</strong><p>${br(p.observation)}</p></div>`:""}${p.script?`<div class="quote"><strong>소개 멘트</strong><br>${br(p.script)}</div>`:""}</article>`}
+
+function updates(){
+  const e=getRecord("updates",state.editing.updates)||{};
+  return `${head("업데이트","개선 요청은 대기 목록에 남기고, 반영 완료 시 요청은 삭제되며 이력에 요약됩니다.",`<button class="brand" id="openQuickFromPage" type="button">빠른 메모 열기 Ctrl+U</button>`)}
+  <div class="grid two"><div class="card"><div class="record-form-title"><h3>${state.editing.updates?"업데이트 요청 수정":"업데이트 요청 추가"}</h3></div>${editBanner("updates")}
+  <form id="updateForm" class="form-grid"><label>요청일<input type="date" name="date" value="${val(e,"date",today())}"></label><label>우선순위<select name="priority"><option ${(!e.priority||e.priority==="보통")?"selected":""}>보통</option><option ${e.priority==="높음"?"selected":""}>높음</option><option ${e.priority==="낮음"?"selected":""}>낮음</option></select></label><label class="full">제목<input name="title" required value="${val(e,"title")}" placeholder="예: 성찰 질문 페이지 개선"></label><label>작성 화면<input name="screen" value="${val(e,"screen",currentTabLabel())}" placeholder="예: 소개자료"></label><label>자동 저장 시각<input name="savedAt" value="${val(e,"savedAt")}" placeholder="자동 입력 가능"></label><label class="full">요청 내용<textarea name="detail" required placeholder="어떤 기능을 어떻게 바꾸고 싶은지 적어주세요.">${val(e,"detail")}</textarea></label>${formButtons("updates","요청 저장")}</form></div><div class="card white"><h3>업데이트 운영 원칙</h3><div class="quote"><strong>대기 → 반영 → 이력</strong><br>요청은 작업 전까지 보관합니다. 반영 버튼을 누르면 대기 목록에서는 사라지고, 업데이트 이력에는 “무엇이 바뀌었는지” 요약만 남습니다.</div><p><span class="kbd">Ctrl</span> + <span class="kbd">U</span>를 누르면 어떤 화면에서든 업데이트 메모창을 열고 닫을 수 있습니다.</p></div></div>
+  <div class="grid two" style="margin-top:16px"><div class="card white"><h3>반영 대기</h3><div class="list">${state.data.updates.length?state.data.updates.map(updateItem).join(""):`<div class="empty">대기 중인 업데이트가 없습니다.</div>`}</div></div><div class="card white"><h3>업데이트 이력</h3><div class="list">${state.data.updateHistory.length?state.data.updateHistory.map(historyItem).join(""):`<div class="empty">아직 업데이트 이력이 없습니다.</div>`}</div></div></div>`;
+}
+function updateItem(u){const pc=u.priority==="높음"?"danger":u.priority==="낮음"?"good":"warn";return `<article class="item clickable" data-open-record="updates:${u.id}"><div class="item-head"><div><h4>${esc(u.title||"업데이트")}</h4><small>${esc(u.date||dateVal(u.createdAt)||"날짜 없음")} · ${esc(u.screen||"화면 미기록")}</small></div><div class="row-actions"><button class="small secondary" data-edit="updates:${u.id}">불러오기/수정</button><button class="small good" data-complete="${u.id}">반영완료</button><button class="small danger" data-del="updates:${u.id}">삭제</button></div></div><div class="meta"><span class="chip ${pc}">${esc(u.priority||"보통")}</span>${u.savedAt?`<span class="chip good">자동저장 ${esc(u.savedAt)}</span>`:""}</div><p>${br(u.detail||"")}</p></article>`}
+function historyItem(h){return `<article class="item"><div class="item-head"><div><h4>${esc(h.title||"업데이트 반영")}</h4><small>${esc(h.appliedDate||dateVal(h.createdAt)||"날짜 없음")} · ${esc(h.status||"반영완료")}</small></div><button class="small danger" data-del="updateHistory:${h.id}">삭제</button></div><div class="quote">${br(h.summary||"")}</div>${h.originalDetail?`<details><summary>원래 요청 보기</summary><p>${br(h.originalDetail)}</p></details>`:""}</article>`}
+
+function settings(){
+  const sample=`{\n  "apiKey": "YOUR_API_KEY",\n  "authDomain": "YOUR_PROJECT.firebaseapp.com",\n  "projectId": "YOUR_PROJECT_ID",\n  "storageBucket": "YOUR_PROJECT.appspot.com",\n  "messagingSenderId": "YOUR_SENDER_ID",\n  "appId": "YOUR_APP_ID"\n}`;
+  return `${head("설정","Firebase 설정값이 기본 반영되어 있으며, Firestore 권한이 열려 있으면 실시간 동기화로 사용합니다.")}
+  <div class="grid two"><div class="card"><h3>기본 설정</h3><form id="settingsForm" class="form-grid"><label class="full">프로그램 제목<input name="programTitle" value="${esc(state.settings.programTitle)}"></label><label>사용자 이름<input name="ownerName" value="${esc(state.settings.ownerName)}"></label><label>작업공간 ID<input name="workspaceId" value="${esc(state.settings.workspaceId)}"></label><label class="full">핵심 문장<textarea name="motto">${esc(state.settings.motto)}</textarea></label><label class="full">Firebase Config JSON<textarea name="firebaseConfigText" placeholder='${esc(sample)}'>${esc(state.settings.firebaseConfigText)}</textarea></label><div class="full toolbar"><button class="brand" type="submit">설정 저장</button><button class="secondary" type="button" id="exportBtn">백업 JSON 내보내기</button><button class="secondary" type="button" id="importBtn">백업 JSON 불러오기</button><input id="importFile" type="file" accept="application/json" class="hide"></div></form></div><div class="card white"><h3>사용 방법</h3><p><strong>1.</strong> 이 HTML 파일에는 Firebase 설정값이 기본 반영되어 있습니다. Firestore 연결 실패 시에는 브라우저 저장소 모드로 작동합니다.</p><p><strong>2.</strong> <span class="kbd">Ctrl</span> + <span class="kbd">U</span> 업데이트 메모, <span class="kbd">Ctrl</span> + <span class="kbd">G</span> ChatGPT 연결입니다.</p><p><strong>3.</strong> 이전 기록은 목록에서 클릭하거나 “불러오기/수정”을 누르면 폼으로 불러와 수정할 수 있습니다.</p><p><strong>4.</strong> 여러 기기에서 같은 작업공간 ID를 쓰면 같은 자료를 실시간으로 볼 수 있습니다.</p><div class="quote"><strong>현재 버전</strong><br>${APP_VERSION}</div></div></div>`;
+}
+
+function bind(){
+  const formMap={taskForm:"tasks",eventForm:"events",reflectionForm:"reflections",trainingForm:"trainings",peopleForm:"people",updateForm:"updates"};
+  Object.entries(formMap).forEach(([fid,type])=>{
+    const form=$("#"+fid);
+    form?.addEventListener("submit",async e=>{
+      e.preventDefault();
+      const payload=Object.fromEntries(new FormData(e.currentTarget).entries());
+      const rid=state.editing[type]||"";
+      await saveRecord(type,payload,rid);
+      state.editing[type]=null;
+      e.currentTarget.reset();
+      render();
+    });
+  });
+  $("#settingsForm")?.addEventListener("submit",e=>{e.preventDefault();state.settings={...state.settings,...Object.fromEntries(new FormData(e.currentTarget).entries())};saveLocal();toast("설정을 저장했습니다. Firebase 연결은 새로고침 후 적용됩니다.");setTimeout(()=>location.reload(),700)});
+  $("#eventSearch")?.addEventListener("input",e=>{state.filters.eventSearch=e.target.value;render()});
+  $("#eventTypeFilter")?.addEventListener("change",e=>{state.filters.eventType=e.target.value;render()});
+  $("#taskStatusFilter")?.addEventListener("change",e=>{state.filters.taskStatus=e.target.value;render()});
+  $$('[data-del]').forEach(b=>b.onclick=(ev)=>{ev.stopPropagation();const [t,rid]=b.dataset.del.split(":");removeRecord(t,rid)});
+  $$('[data-complete]').forEach(b=>b.onclick=(ev)=>{ev.stopPropagation();completeUpdate(b.dataset.complete)});
+  $$('[data-edit]').forEach(b=>b.onclick=(ev)=>{ev.stopPropagation();const [t,rid]=b.dataset.edit.split(":");openRecord(t,rid)});
+  $$('[data-open-record]').forEach(el=>el.onclick=(ev)=>{if(ev.target.closest("button"))return;const [t,rid]=el.dataset.openRecord.split(":");openRecord(t,rid)});
+  $$('[data-cancel-edit]').forEach(b=>b.onclick=()=>{state.editing[b.dataset.cancelEdit]=null;render();showScreenChip("새 기록 입력으로 전환했습니다.")});
+  $$('[data-use-question]').forEach(b=>b.onclick=()=>{const input=$("#reflectionQuestion");if(input)input.value=b.dataset.useQuestion;scrollTo({top:0,behavior:"smooth"})});
+  $$('[data-open-reflection]').forEach(b=>b.onclick=()=>{state.activeTab="reflection";render();setTimeout(()=>{$("#reflectionQuestion").value=b.dataset.openReflection},0)});
+  $$('[data-go]').forEach(b=>b.onclick=()=>{state.activeTab=b.dataset.go;render()});
+  $$('[data-copy]').forEach(b=>b.onclick=async()=>{await navigator.clipboard.writeText(b.dataset.copy||"");toast("복사했습니다.")});
+  $("#loadPrepQuestionsBtn")?.addEventListener("click",()=>{const el=$("#prepAnswers");const text=PREP_QUESTIONS.map((q,i)=>`${i+1}. ${q}\n답변: `).join("\n\n");el.value = el.value ? el.value + "\n\n" + text : text;el.focus()});
+  $("#openQuickFromPage")?.addEventListener("click",toggleQuickPanel);
+  $("#exportBtn")?.addEventListener("click",()=>{const blob=new Blob([JSON.stringify({version:APP_VERSION,settings:state.settings,data:state.data},null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=`사회일지_백업_${today()}.json`;a.click();URL.revokeObjectURL(a.href)});
+  $("#importBtn")?.addEventListener("click",()=>$("#importFile")?.click());
+  $("#importFile")?.addEventListener("change",async e=>{const f=e.target.files?.[0];if(!f)return;try{const p=JSON.parse(await f.text());state.settings={...DEFAULT_SETTINGS,...(p.settings||{})};state.data={...state.data,...(p.data||{})};saveLocal();toast("백업을 불러왔습니다.");render()}catch{toast("백업 파일을 읽지 못했습니다.")}});
+}
+
+function openRecord(type,rid){
+  if(!getRecord(type,rid)){toast("기록을 찾지 못했습니다.");return}
+  const tab=TAB_BY_TYPE[type]||state.activeTab;
+  state.activeTab=tab;
+  if(state.editing[type]!==undefined)state.editing[type]=rid;
+  render();
+  setTimeout(()=>{const fid=FORM_BY_TYPE[type];const form=fid?$("#"+fid):null;if(form)form.scrollIntoView({behavior:"smooth",block:"start"});showScreenChip("이전 기록을 불러왔습니다. 수정 후 저장하세요.")},0);
+}
+
+function loadQuickDraft(){
+  try{return JSON.parse(localStorage.getItem(QUICK_DRAFT_KEY)||"{}") || {}}catch{return {}}
+}
+function saveQuickDraft(draft){localStorage.setItem(QUICK_DRAFT_KEY,JSON.stringify(draft))}
+function clearQuickDraft(){localStorage.removeItem(QUICK_DRAFT_KEY);["#quickTitle","#quickDetail"].forEach(s=>{const el=$(s);if(el)el.value=""});const p=$("#quickPriority");if(p)p.value="보통";setQuickSaveState("새 메모 대기")}
+function updateQuickScreen(){const label=currentTabLabel();const input=$("#quickScreen"),chip=$("#quickScreenChip");if(input)input.value=label;if(chip)chip.textContent=label}
+function setQuickSaveState(text){const el=$("#quickSaveState");if(el)el.textContent=text}
+function hydrateQuickPanel(){
+  updateQuickScreen();
+  const draft=loadQuickDraft();
+  const existing=state.quickUpdateId ? getRecord("updates",state.quickUpdateId) : null;
+  const source=existing || draft;
+  $("#quickTitle").value=source.title||"";
+  $("#quickDetail").value=source.detail||"";
+  $("#quickPriority").value=source.priority||"보통";
+  setQuickSaveState(existing?"기존 메모 불러옴":draft.detail||draft.title?"임시 메모 불러옴":"대기 중");
+}
+function toggleQuickPanel(){
+  state.quickOpen=!state.quickOpen;
+  $("#quickPanel").classList.toggle("show",state.quickOpen);
+  if(state.quickOpen){hydrateQuickPanel();setTimeout(()=>$("#quickDetail")?.focus(),60)}
+}
+async function autoSaveQuick(){
+  const title=$("#quickTitle")?.value.trim()||"";
+  const detail=$("#quickDetail")?.value.trim()||"";
+  const priority=$("#quickPriority")?.value||"보통";
+  const screen=$("#quickScreen")?.value||currentTabLabel();
+  const draft={title,detail,priority,screen,savedAt:nowText(),date:today()};
+  saveQuickDraft(draft);
+  if(!title && !detail){setQuickSaveState("임시 저장됨");return}
+  setQuickSaveState("저장 중...");
+  const payload={title:title||`${screen} 화면 메모`,detail,priority,screen,savedAt:nowText(),date:today()};
+  try{
+    const rid=await saveRecord("updates",payload,state.quickUpdateId,{silent:true});
+    state.quickUpdateId=rid;
+    localStorage.setItem(QUICK_ID_KEY,rid);
+    setQuickSaveState("자동 저장됨");
+  }catch(e){console.error(e);setQuickSaveState("저장 실패");toast("업데이트 자동 저장에 실패했습니다.")}
+}
+function scheduleQuickSave(){clearTimeout(state.quickTimer);setQuickSaveState("입력 중...");state.quickTimer=setTimeout(autoSaveQuick,650)}
+function bindGlobalActions(){
+  $("#quickUpdateBtn").onclick=toggleQuickPanel;
+  $("#quickCloseBtn").onclick=toggleQuickPanel;
+  $("#chatgptLinkBtn").onclick=()=>window.open(CHATGPT_LINK,"_blank","noopener");
+  $("#quickGoUpdatesBtn").onclick=()=>{state.activeTab="updates";if(state.quickOpen)toggleQuickPanel();render()};
+  $("#quickNewBtn").onclick=()=>{state.quickUpdateId="";localStorage.removeItem(QUICK_ID_KEY);clearQuickDraft();toast("새 업데이트 메모를 시작합니다.")};
+  ["#quickTitle","#quickDetail","#quickPriority"].forEach(s=>$(s).addEventListener("input",scheduleQuickSave));
+  document.addEventListener("keydown",e=>{
+    const key=e.key.toLowerCase();
+    if(e.ctrlKey && !e.shiftKey && !e.altKey && key==="u"){
+      e.preventDefault();
+      toggleQuickPanel();
+    }
+    if(e.ctrlKey && !e.shiftKey && !e.altKey && key==="g"){
+      e.preventDefault();
+      window.open(CHATGPT_LINK,"_blank","noopener");
+    }
+    if(e.altKey&&!e.shiftKey&&!e.ctrlKey){const i=Number(e.key)-1;if(NAV[i]){state.activeTab=NAV[i].id;render()}}
+  });
+}
+
+$("#randomInsightBtn").onclick=()=>{const q=CORE_QUESTIONS[Math.floor(Math.random()*CORE_QUESTIONS.length)];$("#todayInsight").textContent=`${q.title} — ${q.guide}`};
+bindGlobalActions();
+loadLocal();
+render();
+initFirebase();
 </script>
 </body>
 </html>
